@@ -1,23 +1,21 @@
 public class Exercise {
 
-    private static final int TOTAL_HELD_POUNDS = 10_000;
-    private static final double MIN_EXCHANGE_RATE = 1.15;
-    private static final int POUNDS_SOLD_PER_DAY = 1_000;
+    public static void main(String[] args) {
+       int pounds = 10000;
+       int euro = 0;
+       int days = 0;
+       double poundToEuro = 1 + (Math.random()* 0.2);
 
-    public static void main(String[] args)
-    {
-        int currentlyHeldPounds = TOTAL_HELD_POUNDS;
-        int elapsedDays = 0;
-
-        while (currentlyHeldPounds > 0)
-        {
-            double todaysExchangeRate = 1 + (Math.random() * 0.2);
-            if (todaysExchangeRate > MIN_EXCHANGE_RATE)
-                currentlyHeldPounds -= POUNDS_SOLD_PER_DAY;
-
-            elapsedDays++;
-        }
-
-        System.out.printf("It took %d days to all all the stored pounds.%n", elapsedDays);
+       while (pounds > 0) {
+           poundToEuro = 1 + (Math.random()* 0.2);
+           if (poundToEuro > 1.15) {
+               int poundToSell = Math.min(1000, pounds);
+               euro += (int) (poundToSell * poundToEuro);
+               pounds -=poundToSell;
+           }
+           days++;
+       }
+        System.out.println("Number of days to sell all pounds: " + days);
     }
-}
+   }
+
